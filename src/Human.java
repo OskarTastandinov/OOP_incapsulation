@@ -3,7 +3,6 @@ public class Human {
     String name;
     private String town;
     String job;
-
     public Human(String name, String town, int yearOfBirth, String job) {
         if (name != name || name == null || name == "") {
             this.name = null;
@@ -26,24 +25,19 @@ public class Human {
             this.job = job;
         }
     }
-
     public String getTown() {
         return this.town;
     }
-
     public int getYearOfBirth() {
         return this.yearOfBirth;
     }
-
     public void setTown(String town) {
         if (town == null || town.isEmpty()){
             System.out.println("Информация не указана");
         }else{
             this.town = town;
         }
-
     }
-
     public void setYearOfBirth(int yearOfBirth) {
         if (yearOfBirth <= 0){
             this.yearOfBirth = 0;
@@ -51,9 +45,21 @@ public class Human {
             this.yearOfBirth = yearOfBirth;
         }
     }
-
+    public String getName() {
+        return name;
+    }
+    public String getJob() {
+        return job;
+    }
+    public void setJob(String job) {
+        this.job = job;
+    }
     public void human(){
-        System.out.println("Привет! Меня зовут " + name + ". Я из города " + getTown() +
-                ". Мне " +  getYearOfBirth() + " лет. Я работаю на должности " + job + ". Будем знакомы!");
+        System.out.println("Привет! Меня зовут " + getName() + ". Я из города " + getTown() +
+                ". Мне " +  getYearOfBirth() + " лет. Я работаю на должности " + getJob() + ". Будем знакомы!");
+    }
+    public void human1(){
+        System.out.println("Привет! Меня зовут " + getName() + ". Я из города " + getTown() +
+                ". Мне " +  getYearOfBirth() + " лет. " + getJob() + ". Будем знакомы!");
     }
 }
