@@ -1,36 +1,32 @@
 package transport;
 
-public class Car {
-    private String stamp; // марка
-    private String model; // модель
+public class Car extends Transport {
     private double engineCapacity; // объем двигателя
-    private String bodyColor; // цвет кузова
-    private int yearOfProduction; // год выпуска
-    private String countryOfAssembly; // страна сборки
+
     // новые свойства:
     private String transmission; // коробка передач
     private String bodyType; // тип кузова
     private String regNumber; // регистрационный номер
     private int numberOfSeats; // количество мест
     private String typeOfRubber; // тип резины
+    public Car(String stamp, String model, int yearOfProduction,
+               String countryOfAssembly, String bodyColor, double engineCapacity,
+               String transmission, String bodyType, String regNumber, int numberOfSeats, String typeOfRubber, double maxSpeed){
+        super(stamp, model, yearOfProduction, countryOfAssembly, bodyColor, maxSpeed);
+        this.transmission = transmission;
+        this.bodyType = bodyType;
+        this.regNumber = regNumber;
+        this.numberOfSeats = numberOfSeats;
+        this.typeOfRubber = typeOfRubber;
 
-    public String getStamp() {
-        return this.stamp;
-    }
-    public String getModel() {
-        return this.model;
-    }
-    public String getCountryOfAssembly() {
-        return this.countryOfAssembly;
-    }
-    public int getYearOfProduction() {
-        return this.yearOfProduction;
-    }
-    public String getBodyColor() {
-        return this.bodyColor;
+        if (engineCapacity <= 0){
+        this.engineCapacity = 1.5;
+    }else{
+        this.engineCapacity = engineCapacity;
+        }
     }
     public double getEngineCapacity() {
-        return this.engineCapacity;
+        return engineCapacity;
     }
 
     public String getTransmission() {
@@ -52,56 +48,27 @@ public class Car {
     public String getTypeOfRubber() {
         return typeOfRubber;
     }
-    public Car(String stamp, String model, int yearOfProduction,
-               String countryOfAssembly, String bodyColor, double engineCapacity,
-               String transmission, String bodyType, String regNumber, int numberOfSeats, String typeOfRubber){
-        this.transmission = transmission;
-        this.bodyType = bodyType;
-        this.regNumber = regNumber;
-        this.numberOfSeats = numberOfSeats;
-        this.typeOfRubber = typeOfRubber;
-        if(stamp == null){
-            this.stamp = "default";
-        }else{
-            this.stamp = stamp;
-        }
-        if(model == null){
-            this.model = "default";
-        }else{
-            this.model = model;
-        }
-        if(countryOfAssembly == null){
-            this.countryOfAssembly = "default";
-        }else{
-            this.countryOfAssembly = countryOfAssembly;
-        }
-        if (engineCapacity <= 0){
-            this.engineCapacity = 1.5;
-        }else{
-            this.engineCapacity = engineCapacity;
-        }
-        if (bodyColor == null){
-            this.bodyColor = "Белый";
-        }else{
-            this.bodyColor = bodyColor;
-        }
-        if (yearOfProduction <= 0){
-            this.yearOfProduction = 2000;
-        }else{
-            this.yearOfProduction = yearOfProduction;
-        }
 
-    }
-    public void car(){
-        System.out.println(stamp + " " + model + ", " + yearOfProduction + " год выпуска, " +
-                countryOfAssembly + ", " + bodyColor + ", объем двигателя - " + engineCapacity +
+    /*public void car(){
+        System.out.println(getStamp() + " " + getModel() + ", " + getYearOfProduction() + " год выпуска, " +
+                getCountryOfAssembly() + ", " + getBodyColor() + ", объем двигателя - " + engineCapacity +
                 ", коробка передач - " + transmission + ", \nтип кузова - " + bodyType +
-                ", регистрационный номер - " + regNumber + ", количество мест - " + numberOfSeats + ", тип резины - " + typeOfRubber);
+                ", регистрационный номер - " + regNumber + ", количество мест - " + numberOfSeats +
+                ", тип резины - " + typeOfRubber + ", Максимальная скорость - " + getMaxSpeed() + " км/ч");
+    }*/
+
+    @Override
+    public String toString() {
+        return getStamp() + " " + getModel() + ", " + getYearOfProduction() + " год выпуска, " +
+                getCountryOfAssembly() + ", " + getBodyColor() + ", объем двигателя - " + engineCapacity +
+                ", коробка передач - " + transmission + ", \nтип кузова - " + bodyType +
+                ", регистрационный номер - " + regNumber + ", количество мест - " + numberOfSeats +
+                ", тип резины - " + typeOfRubber + ", Максимальная скорость - " + getMaxSpeed() + " км/ч";
     }
 
     public static class Key{
         private String remoteEngineStart; // удалённый запуск двигателя
-        private String keylessAccess; // бесключевой доступ
+        private String keylessAccess; // без ключевой доступ
         private Key key;
 
         public Key getKey() {
@@ -200,18 +167,8 @@ public class Car {
                 System.out.println("Такого дня не существует");
         }
     }
-
-    /*Данные параметры неизменяемые. Добавьте ко всем новым полям проверку данных, что параметры не пустые, не равны null и содержат корректные данные.
-    Добавьте метод проверки срока годности страховки - не просрочена ли она. Если страховка просрочена, то в консоль должно выводится предупреждающее
-    сообщение о том, что нужно срочно ехать оформлять новую страховку. Если страховка ещё действует, то никаких сообщений выводить не нужно.
-    Добавьте метод проверки, что номер страховки содержит 9 знаков. Если знаков больше или меньше, то вывести сообщение “Номер страховки некорректный!”
-
-    Добавьте к каждому уже созданному объекту данные о страховке, подставив собственные значения
-
-- Критерии оценки:
-            - Создан вложенный класс insurance
-    - Созданы параметры класса
-    - Создан метод проверки данных срока годности и номера страховки
-    - Все параметры вложенного класса помечены модификатором доступа private
-    - Создан конструктор для создания нового объекта класса*/
+    @Override
+    public void refill() {
+        System.out.println("Пора заправить автомобиль бензином!");
+    }
 }
