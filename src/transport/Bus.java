@@ -1,9 +1,18 @@
 package transport;
 
 public class Bus extends Transport implements Competing {
-
-    public Bus(String stamp, String model, double engineCapacity){
+    private Capasity capasity;
+    public Bus(String stamp, String model, double engineCapacity, Capasity capasity){
         super(stamp, model, engineCapacity);
+        this.capasity = capasity;
+    }
+
+    public Capasity getCapasity() {
+        return capasity;
+    }
+
+    public void setCapasity(Capasity capasity) {
+        this.capasity = capasity;
     }
 
     @Override
@@ -15,6 +24,17 @@ public class Bus extends Transport implements Competing {
     public void finishTheMovement() {
         System.out.println("заканчиваем движение в конце улицы");
     }
+
+    @Override
+    public void printType() {
+        if(capasity == null){
+            System.out.println("Данных недостаточно");
+        }else {
+            System.out.println("Вместимость автобуса: " + capasity.getFrom() + " до " +
+                    capasity.getTo());
+        }
+    }
+
     @Override
     public String toString() {
         return "Марка - " + getStamp() + ", модель - " + getModel() +

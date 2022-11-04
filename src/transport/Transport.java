@@ -34,5 +34,6 @@ public abstract class Transport {
     public double getEngineCapacity() {
         return engineCapacity;
     }
+    public abstract void printType();
 }
 
